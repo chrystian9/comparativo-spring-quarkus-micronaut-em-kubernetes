@@ -1,8 +1,8 @@
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\shared\exceptions\causes\RequiredFieldException.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\shared\entities\BaseEntity.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\shared\utils\UtilsFactory.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\shared\utils\ValidationUtils.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\task\impl\CommonTask.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\task\Task.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\shared\exceptions\DomainException.java
-C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolistspringboot\core\task\TaskFactory.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\shared\entities\BaseEntity.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\shared\exceptions\DomainException.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\task\TaskFactory.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\shared\utils\UtilsFactory.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\task\Task.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\task\impl\CommonTask.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\shared\exceptions\causes\RequiredFieldException.java
+C:\Users\chrystian.amaral\source\repos\Pessoal\UFLA\TCC\Projetos\Spring Boot\todolistspringboot\core\domain\src\main\java\br\ufla\dcc\todolist\core\shared\utils\ValidationUtils.java

@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>br.ufla.dcc.todolistspringboot</groupId>
+    <groupId>br.ufla.dcc.todolist</groupId>
     <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>br.ufla.dcc.todolistspringboot.core</groupId>
+  <groupId>br.ufla.dcc.todolist.core</groupId>
   <artifactId>domain</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>domain</name>
