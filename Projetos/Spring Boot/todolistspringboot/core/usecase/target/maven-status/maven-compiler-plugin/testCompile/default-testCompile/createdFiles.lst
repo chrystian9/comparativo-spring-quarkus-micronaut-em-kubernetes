@@ -1,0 +1,6 @@
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\ChangeTaskDescriptionUseCaseImplTest.class
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\ChangeTaskTitleUseCaseImplTest.class
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\CompletedTaskUseCaseImplTest.class
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\CreateTaskUseCaseImplTest.class
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\UncompletedTaskUseCaseImplTest.class
+br\ufla\dcc\todolistspringboot\core\ports\input\impl\ChangeTaskDeadlineUseCaseImplTest.class

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.ufla.dcc.todolistspringboot.core.ports.input.impl.CompletedTaskUseCaseImplTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 s - in br.ufla.dcc.todolistspringboot.core.ports.input.impl.CompletedTaskUseCaseImplTest
