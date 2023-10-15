@@ -1,8 +1,0 @@
-br\ufla\dcc\todolist\core\shared\exceptions\DomainException.class
-br\ufla\dcc\todolist\core\task\Task.class
-br\ufla\dcc\todolist\core\shared\exceptions\causes\RequiredFieldException.class
-br\ufla\dcc\todolist\core\shared\utils\UtilsFactory.class
-br\ufla\dcc\todolist\core\shared\entities\BaseEntity.class
-br\ufla\dcc\todolist\core\task\impl\CommonTask.class
-br\ufla\dcc\todolist\core\shared\utils\ValidationUtils.class
-br\ufla\dcc\todolist\core\task\TaskFactory.class

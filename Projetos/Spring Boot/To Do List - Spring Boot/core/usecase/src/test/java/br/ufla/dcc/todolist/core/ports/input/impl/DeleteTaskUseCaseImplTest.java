@@ -3,6 +3,7 @@ package br.ufla.dcc.todolist.core.ports.input.impl;
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
 import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
+import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ public class DeleteTaskUseCaseImplTest {
     }
 
     @Test
-    void executeCallDeleteTaskByIdMethodWhenTaskIsNotFound() {
+    void executeCallDeleteTaskByIdMethodWhenTaskIsNotFound() throws OutputPortException {
         // given
         doReturn(Optional.empty())
                 .when(taskOutputPortMock)

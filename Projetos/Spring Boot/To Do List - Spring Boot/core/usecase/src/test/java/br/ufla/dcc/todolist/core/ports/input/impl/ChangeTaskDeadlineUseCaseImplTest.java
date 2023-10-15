@@ -1,5 +1,6 @@
 package br.ufla.dcc.todolist.core.ports.input.impl;
 
+import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.dtos.TaskDTO;
 import br.ufla.dcc.todolist.core.mapper.TaskMapper;
@@ -60,7 +61,7 @@ public class ChangeTaskDeadlineUseCaseImplTest {
     }
 
     @Test
-    void executeCallChangeTaskDeadlineByIdMethodWhenTaskIsNotFound() {
+    void executeCallChangeTaskDeadlineByIdMethodWhenTaskIsNotFound() throws OutputPortException {
         // given
         LocalDateTime newDeadline = VALID_DEADLINE.withHour(VALID_DEADLINE.getHour() + 2);
 

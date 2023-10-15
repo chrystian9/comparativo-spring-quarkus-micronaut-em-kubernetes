@@ -3,16 +3,15 @@ package br.ufla.dcc.todolistquarkus.controllers;
 import br.ufla.dcc.todolist.core.dtos.TaskDTO;
 import br.ufla.dcc.todolist.core.ports.input.*;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
-import br.ufla.dcc.todolist.core.shared.exceptions.causes.DomainValidationException;
 import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskDeadlineByIdRequest;
 import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskDescriptionByIdRequest;
 import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskTitleByIdRequest;
 import br.ufla.dcc.todolistquarkus.data.requests.CreateTaskRequest;
-import jakarta.ws.rs.*;
+import io.micronaut.http.annotation.*;
 
 import java.util.List;
 
-@Path("/task")
+@Controller("/task")
 public class TaskController {
     private final CreateTaskUseCase createTaskUseCase;
     private final GetAllTaskUseCase getAllTaskUseCase;
@@ -36,7 +35,7 @@ public class TaskController {
         this.uncompletedTaskUseCase = uncompletedTaskUseCase;
     }
 
-    @POST
+    @Post
     public void createTask(CreateTaskRequest createTaskRequest){
         try {
             createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
@@ -44,15 +43,14 @@ public class TaskController {
                     createTaskRequest.getDescription(),
                     createTaskRequest.getDeadline(),
                     createTaskRequest.getIsCompleted()));
-        } catch (DomainValidationException e) {
-            throw new BadRequestException(e.getMessage());
+//        } catch (DomainValidationException e) {
+//            throw new BadRequestException(e.getMessage());
         } catch (CoreException e){
             throw new RuntimeException(e);
         }
     }
 
-    @GET
-    @Path("/getAllTask")
+    @Get("/getAllTask")
     public List<TaskDTO> getAllTask(){
         try {
             return getAllTaskUseCase.getAll();
@@ -61,9 +59,8 @@ public class TaskController {
         }
     }
 
-    @GET
-    @Path("/getTaskById/{id}")
-    public TaskDTO getTaskById(@PathParam("id") Long id){
+    @Get("/getTaskById/{id}")
+    public TaskDTO getTaskById(Long id){
         try {
             return getTaskUseCase.getById(id);
         } catch (CoreException e){
@@ -71,9 +68,8 @@ public class TaskController {
         }
     }
 
-    @DELETE
-    @Path("/{id}")
-    public void deleteTaskById(@PathParam("id") Long id){
+    @Delete("/{id}")
+    public void deleteTaskById(Long id){
         try {
             deleteTaskUseCase.deleteTaskById(id);
         } catch (CoreException e){
@@ -81,51 +77,47 @@ public class TaskController {
         }
     }
 
-    @PUT
-    @Path("/changeTaskTitleById")
+    @Put("/changeTaskTitleById")
     public TaskDTO changeTaskTitleById(ChangeTaskTitleByIdRequest changeTaskTitleByIdRequest){
         try {
             return changeTaskTitleUseCase.changeTaskTitleById(
                     changeTaskTitleByIdRequest.getId(),
                     changeTaskTitleByIdRequest.getTitle());
-        } catch (DomainValidationException e) {
-            throw new BadRequestException(e.getMessage());
+//        } catch (DomainValidationException e) {
+//            throw new BadRequestException(e.getMessage());
         } catch (CoreException e){
             throw new RuntimeException(e);
         }
     }
 
-    @PUT
-    @Path("/changeTaskDescriptionById")
+    @Put("/changeTaskDescriptionById")
     public TaskDTO changeTaskDescriptionById(ChangeTaskDescriptionByIdRequest changeTaskDescriptionByIdRequest){
         try {
             return changeTaskDescriptionUseCase.changeTaskDescriptionById(
                     changeTaskDescriptionByIdRequest.getId(),
                     changeTaskDescriptionByIdRequest.getDescription());
-        } catch (DomainValidationException e) {
-            throw new BadRequestException(e.getMessage());
+//        } catch (DomainValidationException e) {
+//            throw new BadRequestException(e.getMessage());
         } catch (CoreException e){
             throw new RuntimeException(e);
         }
     }
 
-    @PUT
-    @Path("/changeTaskDeadlineById")
+    @Put("/changeTaskDeadlineById")
     public TaskDTO changeTaskDeadlineById(ChangeTaskDeadlineByIdRequest changeTaskDeadlineByIdRequest){
         try {
             return changeTaskDeadlineUseCase.changeTaskDealineById(
                     changeTaskDeadlineByIdRequest.getId(),
                     changeTaskDeadlineByIdRequest.getDateTime());
-        } catch (DomainValidationException e) {
-            throw new BadRequestException(e.getMessage());
+//        } catch (DomainValidationException e) {
+//            throw new BadRequestException(e.getMessage());
         } catch (CoreException e){
             throw new RuntimeException(e);
         }
     }
 
-    @PUT
-    @Path("/completedTaskById/{id}")
-    public TaskDTO completedTaskById(@PathParam("id") Long id){
+    @Put("/completedTaskById/{id}")
+    public TaskDTO completedTaskById(Long id){
         try {
             return completedTaskUseCase.completedTaskById(id);
         } catch (CoreException e){
@@ -133,9 +125,8 @@ public class TaskController {
         }
     }
 
-    @PUT
-    @Path("/uncompletedTaskById/{id}")
-    public TaskDTO uncompletedTaskById(@PathParam("id") Long id){
+    @Put("/uncompletedTaskById/{id}")
+    public TaskDTO uncompletedTaskById(Long id){
         try {
             return uncompletedTaskUseCase.uncompletedTaskById(id);
         } catch (CoreException e){

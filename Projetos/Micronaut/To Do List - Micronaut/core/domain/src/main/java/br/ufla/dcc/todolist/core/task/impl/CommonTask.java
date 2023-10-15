@@ -112,4 +112,15 @@ public class CommonTask implements Task {
         task.validate();
         return task;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", deadline='" + deadline.toString() + '\'' +
+                ", is completed='" + (isCompleted ? "true" : "false") +
+                '}';
+    }
 }

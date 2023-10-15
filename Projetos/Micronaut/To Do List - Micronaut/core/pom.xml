@@ -4,7 +4,7 @@
 
   <parent>
     <groupId>br.ufla.dcc</groupId>
-    <artifactId>todolistquarkus</artifactId>
+    <artifactId>todolistmicronaut</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 

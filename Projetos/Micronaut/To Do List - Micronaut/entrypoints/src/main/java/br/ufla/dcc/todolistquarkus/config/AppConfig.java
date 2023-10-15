@@ -5,65 +5,55 @@ import br.ufla.dcc.todolist.core.ports.input.*;
 import br.ufla.dcc.todolist.core.ports.input.impl.*;
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
-import io.quarkus.arc.DefaultBean;
-import jakarta.enterprise.context.Dependent;
-import jakarta.enterprise.inject.Produces;
+import io.micronaut.context.annotation.Factory;
+import jakarta.inject.Singleton;
 
-@Dependent
+@Factory
 public class AppConfig {
     private final TaskMapper taskMapper = new TaskMapper();
     private final TaskFactory taskFactory = new TaskFactory();
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public CreateTaskUseCase createTaskUseCase(TaskOutputPort taskOutputPort) {
         return new CreateTaskUseCaseImpl(taskOutputPort, taskMapper, taskFactory);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public DeleteTaskUseCase deleteTaskUseCase(TaskOutputPort taskOutputPort) {
         return new DeleteTaskUseCaseImpl(taskOutputPort);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public GetAllTaskUseCase getAllTaskUseCase(TaskOutputPort taskOutputPort) {
         return new GetAllTaskUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public GetTaskUseCase getTaskUseCase(TaskOutputPort taskOutputPort) {
         return new GetTaskUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public CompletedTaskUseCase completedTaskUseCase(TaskOutputPort taskOutputPort) {
         return new CompletedTaskUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public UncompletedTaskUseCase uncompletedTaskUseCase(TaskOutputPort taskOutputPort) {
         return new UncompletedTaskUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public ChangeTaskTitleUseCase changeTaskTitleUseCase(TaskOutputPort taskOutputPort) {
         return new ChangeTaskTitleUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public ChangeTaskDescriptionUseCase changeTaskDescriptionUseCase(TaskOutputPort taskOutputPort) {
         return new ChangeTaskDescriptionUseCaseImpl(taskOutputPort, taskMapper);
     }
 
-    @Produces
-    @DefaultBean
+    @Singleton
     public ChangeTaskDeadlineUseCase changeTaskDeadlineUseCase(TaskOutputPort taskOutputPort) {
         return new ChangeTaskDeadlineUseCaseImpl(taskOutputPort, taskMapper);
     }

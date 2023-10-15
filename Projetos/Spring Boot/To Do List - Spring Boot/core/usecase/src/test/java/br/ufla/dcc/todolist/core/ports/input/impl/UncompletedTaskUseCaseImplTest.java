@@ -4,6 +4,7 @@ import br.ufla.dcc.todolist.core.mapper.TaskMapper;
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
 import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
+import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.dtos.TaskDTO;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
@@ -63,7 +64,7 @@ public class UncompletedTaskUseCaseImplTest {
     }
 
     @Test
-    void executeCallCompletedTaskByIdMethodWhenTaskIsNotFound() {
+    void executeCallCompletedTaskByIdMethodWhenTaskIsNotFound() throws OutputPortException {
         // given
         doReturn(Optional.empty())
                 .when(taskOutputPortMock)

@@ -5,6 +5,7 @@ import br.ufla.dcc.todolist.core.mapper.TaskMapper;
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
 import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
+import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
 import org.junit.jupiter.api.Test;
@@ -53,7 +54,7 @@ public class GetTaskUseCaseImplTest {
     }
 
     @Test
-    void executeCallGetTaskByIdMethodWhenTaskIsNotFound() {
+    void executeCallGetTaskByIdMethodWhenTaskIsNotFound() throws OutputPortException {
         // given
         doReturn(Optional.empty())
                 .when(taskOutputPortMock)
