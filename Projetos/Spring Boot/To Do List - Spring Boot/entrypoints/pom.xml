@@ -63,7 +63,23 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>br.ufla.dcc.todolistspringboot.ToDoListSpringBootApplication</mainClass>
+          <layout>JAR</layout>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
+
+  <properties>
+    <start-class>br.ufla.dcc.todolistspringboot.ToDoListSpringBootApplication</start-class>
+  </properties>
+
 </project>
