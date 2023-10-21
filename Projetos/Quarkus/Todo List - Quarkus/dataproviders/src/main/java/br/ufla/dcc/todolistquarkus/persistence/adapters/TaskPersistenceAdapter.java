@@ -70,13 +70,20 @@ public class TaskPersistenceAdapter implements TaskOutputPort {
     }
 
     @Override
-    public Task update(Task task) throws OutputPortException {
-        return create(task);
+    public Task update(Task task) {
+        TaskEntity taskEntity = TaskEntity.findById(task.getId());
+
+        taskEntity.setTitle(task.getTitle());
+        taskEntity.setDescription(task.getDescription());
+        taskEntity.setDeadline(task.getDeadline());
+        taskEntity.setIsCompleted(task.isCompleted());
+
+        return task;
     }
 
     private Optional<Task> optionalTaskFromTaskEntity(TaskEntity taskEntity) throws DomainException {
         Optional<Task> task = Optional.empty();
-        if (taskEntity.isPersistent()) {
+        if (taskEntity != null && taskEntity.isPersistent()) {
             task = Optional.of(taskEntityMapper.toTask(taskEntity));
         }
 

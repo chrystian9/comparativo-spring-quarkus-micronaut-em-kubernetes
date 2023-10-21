@@ -5,6 +5,7 @@ import br.ufla.dcc.todolist.core.ports.input.*;
 import br.ufla.dcc.todolist.core.ports.input.impl.*;
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
+import br.ufla.dcc.todolistquarkus.persistence.mappers.TaskEntityMapper;
 import io.quarkus.arc.DefaultBean;
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Produces;
@@ -13,6 +14,18 @@ import jakarta.enterprise.inject.Produces;
 public class AppConfig {
     private final TaskMapper taskMapper = new TaskMapper();
     private final TaskFactory taskFactory = new TaskFactory();
+
+    @Produces
+    @DefaultBean
+    public TaskFactory createTaskFactory() {
+        return taskFactory;
+    }
+
+    @Produces
+    @DefaultBean
+    public TaskEntityMapper createTaskEntityMapper() {
+        return new TaskEntityMapper(taskFactory);
+    }
 
     @Produces
     @DefaultBean
