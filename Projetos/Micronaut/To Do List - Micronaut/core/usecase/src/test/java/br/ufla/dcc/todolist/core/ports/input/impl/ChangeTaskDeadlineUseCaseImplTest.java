@@ -33,7 +33,7 @@ public class ChangeTaskDeadlineUseCaseImplTest {
     @Test
     void executeCallChangeTaskDeadlineByIdMethodWhenTaskIsFound() throws DomainException, CoreException {
         // given
-        LocalDateTime newDeadline = VALID_DEADLINE.withHour(VALID_DEADLINE.getHour() + 2);
+        LocalDateTime newDeadline = VALID_DEADLINE.withHour((VALID_DEADLINE.getHour() + 2) % 24);
         Task task = taskFactory.createTask(VALID_TITLE, VALID_DESCRIPTION, VALID_DEADLINE);
         Task expectedTask = taskFactory.createTask(VALID_TITLE, VALID_DESCRIPTION, newDeadline);
         TaskDTO expectedTaskDTO = new TaskDTO(expectedTask.getId(),
@@ -63,7 +63,7 @@ public class ChangeTaskDeadlineUseCaseImplTest {
     @Test
     void executeCallChangeTaskDeadlineByIdMethodWhenTaskIsNotFound() throws OutputPortException {
         // given
-        LocalDateTime newDeadline = VALID_DEADLINE.withHour(VALID_DEADLINE.getHour() + 2);
+        LocalDateTime newDeadline = VALID_DEADLINE.withHour((VALID_DEADLINE.getHour() + 2) % 24);
 
         // and
         doReturn(Optional.empty())
