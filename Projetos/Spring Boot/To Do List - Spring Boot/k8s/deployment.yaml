@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-spring-boot
+  namespace: spring-boot
+  labels:
+    app: todo-list-spring-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-list-spring-boot
+  template:
+    metadata:
+      name: todo-list-spring-boot
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "80"
+      labels:
+        app: todo-list-spring-boot
+    spec:
+      containers:
+        - name: todo-list-spring-boot
+          image: chrystian9/to_do_list_spring-boot
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+      
