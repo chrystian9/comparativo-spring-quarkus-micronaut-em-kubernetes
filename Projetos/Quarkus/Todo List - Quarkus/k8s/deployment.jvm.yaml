@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-quarkus
+  namespace: quarkus
+  labels:
+    app: todo-list-quarkus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-list-quarkus
+  template:
+    metadata:
+      name: todo-list-quarkus
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "80"
+      labels:
+        app: todo-list-quarkus
+    spec:
+      containers:
+        - name: todo-list-quarkus
+          image: chrystian9/to_do_list_quarkus-jvm
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+      

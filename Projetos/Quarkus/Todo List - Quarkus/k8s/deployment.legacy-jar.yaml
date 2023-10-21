@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-quarkus-legacy-jar
+  namespace: quarkus
+  labels:
+    app: todo-list-quarkus-legacy-jar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-list-quarkus-legacy-jar
+  template:
+    metadata:
+      name: todo-list-quarkus-legacy-jar
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /metrics
+        prometheus.io/port: "80"
+      labels:
+        app: todo-list-quarkus-legacy-jar
+    spec:
+      containers:
+        - name: todo-list-quarkus-legacy-jar
+          image: chrystian9/to_do_list_quarkus-legacy-jar
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+      restartPolicy: Always
+      
