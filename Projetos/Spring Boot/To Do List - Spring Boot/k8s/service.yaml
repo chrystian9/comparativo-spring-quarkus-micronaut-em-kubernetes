@@ -1,14 +1,13 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: todo-list-spring-boot-service
+  name: to-do-list-spring-boot-service
   namespace: spring-boot
+  labels:
+    app: to-do-list-spring-boot
 spec:
   selector:
-    app: todo-list-spring-boot
+    app: to-do-list-spring-boot
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: NodePort
-  
+  - name: web
+    port: 8080
