@@ -9,10 +9,14 @@ import org.springframework.context.annotation.Bean;
 
 public class AppConfig {
     private final TaskMapper taskMapper = new TaskMapper();
-    private final TaskFactory taskFactory = new TaskFactory();
 
     @Bean
-    public CreateTaskUseCase createTaskUseCase(TaskOutputPort taskOutputPort) {
+    public TaskFactory taskFactory() {
+        return new TaskFactory();
+    }
+
+    @Bean
+    public CreateTaskUseCase createTaskUseCase(TaskOutputPort taskOutputPort, TaskFactory taskFactory) {
         return new CreateTaskUseCaseImpl(taskOutputPort, taskMapper, taskFactory);
     }
 
