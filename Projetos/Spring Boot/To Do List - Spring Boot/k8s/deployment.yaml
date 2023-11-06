@@ -21,27 +21,27 @@ spec:
           - name: POSTGRES_USER
             valueFrom:
               configMapKeyRef:
-                name: postgres-config
+                name: postgres-spring-boot-config-map
                 key: postgres_user
           - name: POSTGRES_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: postgres-config
+                name: postgres-spring-boot-config-map
                 key: postgres_password
           - name: POSTGRES_HOST
             valueFrom:
               configMapKeyRef:
-                name: postgres-config
+                name: postgres-spring-boot-config-map
                 key: postgres_host
           - name: POSTGRES_PORT
             valueFrom:
               configMapKeyRef:
-                name: postgres-config
+                name: postgres-spring-boot-config-map
                 key: postgres_port
           - name: POSTGRES_DB
             valueFrom:
               configMapKeyRef:
-                name: postgres-config
+                name: postgres-spring-boot-config-map
                 key: postgres_db
         image: chrystian9/to_do_list_spring-boot:latest
         imagePullPolicy: IfNotPresent
