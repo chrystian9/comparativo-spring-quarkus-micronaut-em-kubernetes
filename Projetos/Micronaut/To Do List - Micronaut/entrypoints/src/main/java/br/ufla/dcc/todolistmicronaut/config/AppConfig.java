@@ -1,4 +1,4 @@
-package br.ufla.dcc.todolistquarkus.config;
+package br.ufla.dcc.todolistmicronaut.config;
 
 import br.ufla.dcc.todolist.core.mapper.TaskMapper;
 import br.ufla.dcc.todolist.core.ports.input.*;

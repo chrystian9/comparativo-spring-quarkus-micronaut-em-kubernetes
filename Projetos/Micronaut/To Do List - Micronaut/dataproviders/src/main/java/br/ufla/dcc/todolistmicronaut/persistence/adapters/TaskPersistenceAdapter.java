@@ -1,12 +1,12 @@
-package br.ufla.dcc.todolistquarkus.persistence.adapters;
+package br.ufla.dcc.todolistmicronaut.persistence.adapters;
 
 import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
 import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
-import br.ufla.dcc.todolistquarkus.persistence.mappers.TaskEntityMapper;
-import br.ufla.dcc.todolistquarkus.persistence.entities.TaskEntity;
-import br.ufla.dcc.todolistquarkus.persistence.repositories.TaskRepository;
+import br.ufla.dcc.todolistmicronaut.persistence.mappers.TaskEntityMapper;
+import br.ufla.dcc.todolistmicronaut.persistence.repositories.TaskRepository;
+import br.ufla.dcc.todolistmicronaut.persistence.entities.TaskEntity;
 import jakarta.inject.Singleton;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

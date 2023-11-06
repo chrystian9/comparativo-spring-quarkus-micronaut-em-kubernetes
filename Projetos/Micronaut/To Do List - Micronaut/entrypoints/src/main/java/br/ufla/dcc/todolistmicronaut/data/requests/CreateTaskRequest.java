@@ -1,10 +1,9 @@
-package br.ufla.dcc.todolistquarkus.data.requests;
+package br.ufla.dcc.todolistmicronaut.data.requests;
 
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor

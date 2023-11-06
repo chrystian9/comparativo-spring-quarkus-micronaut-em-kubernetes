@@ -1,6 +1,6 @@
-package br.ufla.dcc.todolistquarkus.persistence.repositories;
+package br.ufla.dcc.todolistmicronaut.persistence.repositories;
 
-import br.ufla.dcc.todolistquarkus.persistence.entities.TaskEntity;
+import br.ufla.dcc.todolistmicronaut.persistence.entities.TaskEntity;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.repository.CrudRepository;
 

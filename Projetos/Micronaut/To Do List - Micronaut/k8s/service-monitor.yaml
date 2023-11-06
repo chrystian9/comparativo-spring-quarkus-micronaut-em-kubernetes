@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: to-do-list-micronaut
+  namespace: micronaut
+  labels:
+    app: to-do-list-micronaut
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: to-do-list-micronaut
+  namespaceSelector:
+    any: true
+  endpoints:
+  - port: web
+    path: /prometheus
+    interval: 10s

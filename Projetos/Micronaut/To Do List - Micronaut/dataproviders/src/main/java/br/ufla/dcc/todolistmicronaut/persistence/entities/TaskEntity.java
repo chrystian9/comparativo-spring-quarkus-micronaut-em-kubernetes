@@ -1,4 +1,4 @@
-package br.ufla.dcc.todolistquarkus.persistence.entities;
+package br.ufla.dcc.todolistmicronaut.persistence.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

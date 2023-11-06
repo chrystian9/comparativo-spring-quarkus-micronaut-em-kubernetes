@@ -1,12 +1,12 @@
-package br.ufla.dcc.todolistquarkus.controllers;
+package br.ufla.dcc.todolistmicronaut.controllers;
 
 import br.ufla.dcc.todolist.core.dtos.TaskDTO;
 import br.ufla.dcc.todolist.core.ports.input.*;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
-import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskDeadlineByIdRequest;
-import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskDescriptionByIdRequest;
-import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskTitleByIdRequest;
-import br.ufla.dcc.todolistquarkus.data.requests.CreateTaskRequest;
+import br.ufla.dcc.todolistmicronaut.data.requests.ChangeTaskDeadlineByIdRequest;
+import br.ufla.dcc.todolistmicronaut.data.requests.ChangeTaskDescriptionByIdRequest;
+import br.ufla.dcc.todolistmicronaut.data.requests.ChangeTaskTitleByIdRequest;
+import br.ufla.dcc.todolistmicronaut.data.requests.CreateTaskRequest;
 import io.micronaut.http.annotation.*;
 
 import java.util.List;

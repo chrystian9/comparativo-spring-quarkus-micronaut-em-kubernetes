@@ -12,7 +12,20 @@
   <groupId>br.ufla.dcc.todolistmicronaut</groupId>
   <artifactId>entrypoints</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>${packaging}</packaging>
   <name>entrypoints</name>
+
+  <properties>
+    <packaging>jar</packaging>
+    <jdk.version>17</jdk.version>
+    <release.version>17</release.version>
+    <micronaut.core.version>4.1.11</micronaut.core.version>
+    <micronaut.version>4.0.5</micronaut.version>
+    <micronaut.runtime>netty</micronaut.runtime>
+    <micronaut.aot.enabled>false</micronaut.aot.enabled>
+    <micronaut.aot.packageName>br.ufla.dcc.todolistmicronaut.aot.generated</micronaut.aot.packageName>
+    <exec.mainClass>br.ufla.dcc.todolistmicronaut.ToDoListMicronautApplication</exec.mainClass>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -32,20 +45,64 @@
     </dependency>
     <dependency>
       <groupId>io.micronaut</groupId>
-      <artifactId>micronaut-http-server-netty</artifactId>
-      <version>4.1.4</version>
+      <artifactId>micronaut-core</artifactId>
+      <version>4.1.11</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.serde</groupId>
+      <artifactId>micronaut-serde-jackson</artifactId>
+      <version>2.2.4</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.micronaut</groupId>
-      <artifactId>micronaut-management</artifactId>
-      <version>1.0.0</version>
+      <artifactId>micronaut-http-server-netty</artifactId>
+      <version>4.1.11</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-inject</artifactId>
+      <version>4.1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.validation</groupId>
+      <artifactId>micronaut-validation</artifactId>
+      <version>4.0.1</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-http-client</artifactId>
+      <version>4.1.11</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-jackson-databind</artifactId>
+      <version>4.0.1</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.4.11</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.micrometer</groupId>
+      <artifactId>micronaut-micrometer-core</artifactId>
+      <version>5.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut.micrometer</groupId>
+      <artifactId>micronaut-micrometer-registry-prometheus</artifactId>
+      <version>5.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.micronaut</groupId>
+      <artifactId>micronaut-management</artifactId>
+      <version>${micronaut.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -60,8 +117,57 @@
     </dependency>
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
-      <artifactId>swagger-annotations-jakarta</artifactId>
-      <version>2.2.9</version>
+      <artifactId>swagger-annotations</artifactId>
+      <version>2.2.16</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.micronaut.maven</groupId>
+        <artifactId>micronaut-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths combine.children="override">
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.30</version>
+            </path>
+            <path>
+              <groupId>io.micronaut</groupId>
+              <artifactId>micronaut-inject-java</artifactId>
+              <version>${micronaut.core.version}</version>
+            </path>
+            <path>
+              <groupId>io.micronaut.validation</groupId>
+              <artifactId>micronaut-validation-processor</artifactId>
+              <version>${micronaut.validation.version}</version>
+              <exclusions>
+                <exclusion>
+                  <groupId>io.micronaut</groupId>
+                  <artifactId>micronaut-inject</artifactId>
+                </exclusion>
+              </exclusions>
+            </path>
+            <path>
+              <groupId>io.micronaut</groupId>
+              <artifactId>micronaut-http-validation</artifactId>
+              <version>${micronaut.core.version}</version>
+            </path>
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <arg>-Amicronaut.processing.group=br.ufla.dcc.todolistmicronaut</arg>
+            <arg>-Amicronaut.processing.module=${project.artifactId}</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

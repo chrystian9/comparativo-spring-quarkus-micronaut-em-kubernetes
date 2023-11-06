@@ -9,6 +9,19 @@
   <name>todolistmicronaut</name>
   <description>To Do List App with Micronaut</description>
 
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <parent>
+    <groupId>io.micronaut.platform</groupId>
+    <artifactId>micronaut-parent</artifactId>
+    <version>4.0.0</version>
+  </parent>
+
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -34,6 +47,12 @@
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <maven.compiler.release>17</maven.compiler.release>
+    <jdk.version>17</jdk.version>
+    <release.version>17</release.version>
+    <micronaut.version>4.1.11</micronaut.version>
+    <micronaut-maven-plugin.version>4.0.7</micronaut-maven-plugin.version>
+    <micronaut.runtime>netty</micronaut.runtime>
+    <exec.mainClass>br.ufla.dcc.todolistmicronaut.ToDoListMicronautApplication</exec.mainClass>
   </properties>
 
 </project>
