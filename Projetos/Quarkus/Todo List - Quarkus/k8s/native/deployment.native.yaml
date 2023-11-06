@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: to-do-list-quarkus-native
+  namespace: quarkus
+  labels:
+    app: to-do-list-quarkus-native
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: to-do-list-quarkus-native
+  template:
+    metadata:
+      labels:
+        app: to-do-list-quarkus-native
+    spec:
+      containers:
+        - name: to-do-list-quarkus-native
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-native-config-map
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-native-config-map
+                  key: postgres_password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-native-config-map
+                  key: postgres_host
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-native-config-map
+                  key: postgres_port
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-native-config-map
+                  key: postgres_db
+          image: chrystian9/to_do_list_quarkus-legacy-jar
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 1000Mi
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
+          ports:
+            - name: web
+              containerPort: 8080

@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-quarkus-legacy-jar-config-map
+  namespace: quarkus
+data:
+  postgres_host: 'postgres-quarkus-legacy-jar-service'
+  postgres_port: '5432'
+  postgres_db: 'to-do-list-quarkus-legacy-jar'
+  postgres_user: 'admin'
+  postgres_password: 'tccDevOps'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-quarkus-legacy-jar-pv-claim
+  namespace: quarkus
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 32Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-quarkus-legacy-jar
+  namespace: quarkus
+  labels:
+    app: postgres-quarkus-legacy-jar
+spec:
+  selector:
+    matchLabels:
+      app: postgres-quarkus-legacy-jar
+  template:
+    metadata:
+      labels:
+        app: postgres-quarkus-legacy-jar
+    spec:
+      volumes:
+        - name: postgres-quarkus-legacy-jar-storage
+          persistentVolumeClaim:
+            claimName: postgres-quarkus-legacy-jar-pv-claim
+      containers:
+        - image: postgres
+          name: postgres-quarkus-legacy-jar
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-legacy-jar-config-map
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-legacy-jar-config-map
+                  key: postgres_password
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-legacy-jar-config-map
+                  key: postgres_port
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-legacy-jar-config-map
+                  key: postgres_db
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: postgres-quarkus-legacy-jar-storage
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-quarkus-legacy-jar-service
+  namespace: quarkus
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: postgres-quarkus-legacy-jar

@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: to-do-list-quarkus-legacy-jar-service-monitor
+  namespace: quarkus
+  labels:
+    app: to-do-list-quarkus-legacy-jar
+    release: prometheus-operator
+spec:
+  selector:
+    matchLabels:
+      app: to-do-list-quarkus-legacy-jar
+  namespaceSelector:
+    any: true
+  endpoints:
+    - port: web
+      path: /metrics
+      interval: 10s

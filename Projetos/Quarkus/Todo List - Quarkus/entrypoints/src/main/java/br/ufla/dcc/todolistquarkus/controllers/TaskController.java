@@ -37,9 +37,9 @@ public class TaskController {
     }
 
     @POST
-    public void createTask(CreateTaskRequest createTaskRequest){
+    public TaskDTO createTask(CreateTaskRequest createTaskRequest){
         try {
-            createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
+            return createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
                     createTaskRequest.getTitle(),
                     createTaskRequest.getDescription(),
                     createTaskRequest.getDeadline(),

@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: to-do-list-quarkus-legacy-jar-service
+  namespace: quarkus
+  labels:
+    app: to-do-list-quarkus-legacy-jar
+spec:
+  selector:
+    app: to-do-list-quarkus-legacy-jar
+  ports:
+  - name: web
+    port: 8080

@@ -4,12 +4,11 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangeTaskDeadlineByIdRequest {
-    public Long Id;
+    public Long id;
     public LocalDateTime dateTime;
 }

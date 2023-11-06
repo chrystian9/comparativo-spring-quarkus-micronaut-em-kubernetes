@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-quarkus-micro-native-config-map
+  namespace: quarkus
+data:
+  postgres_host: 'postgres-quarkus-micro-native-service'
+  postgres_port: '5432'
+  postgres_db: 'to-do-list-quarkus-micro-native'
+  postgres_user: 'admin'
+  postgres_password: 'tccDevOps'
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-quarkus-micro-native-pv-claim
+  namespace: quarkus
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 32Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-quarkus-micro-native
+  namespace: quarkus
+  labels:
+    app: postgres-quarkus-micro-native
+spec:
+  selector:
+    matchLabels:
+      app: postgres-quarkus-micro-native
+  template:
+    metadata:
+      labels:
+        app: postgres-quarkus-micro-native
+    spec:
+      volumes:
+        - name: postgres-quarkus-micro-native-storage
+          persistentVolumeClaim:
+            claimName: postgres-quarkus-micro-native-pv-claim
+      containers:
+        - image: postgres
+          name: postgres-quarkus-micro-native
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-micro-native-config-map
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-micro-native-config-map
+                  key: postgres_password
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-micro-native-config-map
+                  key: postgres_port
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-quarkus-micro-native-config-map
+                  key: postgres_db
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: postgres
+          volumeMounts:
+            - name: postgres-quarkus-micro-native-storage
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-quarkus-micro-native-service
+  namespace: quarkus
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: postgres-quarkus-micro-native

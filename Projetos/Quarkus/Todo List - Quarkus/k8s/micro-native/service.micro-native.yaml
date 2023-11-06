@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: to-do-list-quarkus-micro-native-service
+  namespace: quarkus
+  labels:
+    app: to-do-list-quarkus-micro-native
+spec:
+  selector:
+    app: to-do-list-quarkus-micro-native
+  ports:
+  - name: web
+    port: 8080
