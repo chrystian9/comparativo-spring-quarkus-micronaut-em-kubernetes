@@ -12,7 +12,7 @@ export default function () {
     let data = {
         title: "Teste1",
         description: "Teste1",
-        deadline: formatarData(new Date()),
+        deadline: new Date().toISOString(),
         isCompleted: false
     };
 
@@ -21,8 +21,9 @@ export default function () {
     });
 
     data = JSON.parse(response.body);
+    let dataId = data.id.toString();
 
-    response = http.get('http://localhost:8080/task/getTaskById?id=' + data.id);
+    response = http.get('http://localhost:8080/task/getTaskById?id=' + dataId);
 
     GetTaskDuration.add(response.timings.duration);
     GetTaskReqs.add(1);
@@ -37,9 +38,9 @@ export default function () {
         fail(durationMsg);
     };
     
-    response = http.put('http://localhost:8080/task/completedTaskById?id=' + data.id);
+    response = http.put('http://localhost:8080/task/completedTaskById?id=' + dataId);
 
-    response = http.put('http://localhost:8080/task/uncompletedTaskById?id=' + data.id);
+    response = http.put('http://localhost:8080/task/uncompletedTaskById?id=' + dataId);
 
     response = http.post('http://localhost:8080/task/changeTaskTitleById', JSON.stringify({ id: data.id, title: "Teste2" }), {
         headers: { 'Content-Type': 'application/json' },
@@ -49,21 +50,11 @@ export default function () {
         headers: { 'Content-Type': 'application/json' },
     });
     
-    response = http.post('http://localhost:8080/task/changeTaskDeadlineById', JSON.stringify({ id: data.id, deadline: formatarData(new Date()) }), {
+    response = http.post('http://localhost:8080/task/changeTaskDeadlineById', JSON.stringify({ id: data.id, deadline: new Date().toISOString() }), {
         headers: { 'Content-Type': 'application/json' },
     });
 
-    response = http.del('http://localhost:8080/task/deleteTask?id=' + data.id);
+    response = http.del('http://localhost:8080/task/deleteTask?id=' + dataId);
 
     sleep(1);
 }
-
-function formatarData(data) {
-    const ano = data.getFullYear();
-    const mes = String(data.getMonth() + 1).padStart(2, '0');
-    const dia = String(data.getDate()).padStart(2, '0');
-    const horas = String(data.getHours()).padStart(2, '0');
-    const minutos = String(data.getMinutes()).padStart(2, '0');
-  
-    return `${ano}-${mes}-${dia} ${horas}:${minutos}`;
-  }

@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: to-do-list-quarkus-quarkus-micro-native
+  name: to-do-list-quarkus-quarkus-micro-native-service-monitor
   namespace: quarkus
   labels:
     app: to-do-list-quarkus-quarkus-micro-native
@@ -14,5 +14,5 @@ spec:
     any: true
   endpoints:
     - port: web
-      path: /metrics
+      path: /q/metrics
       interval: 10s

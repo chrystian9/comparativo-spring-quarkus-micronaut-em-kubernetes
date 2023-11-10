@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: to-do-list-quarkus-jvm
+  name: to-do-list-quarkus-jvm-service-monitor
   namespace: quarkus
   labels:
     app: to-do-list-quarkus-jvm

@@ -39,10 +39,10 @@ public class TaskController {
         this.uncompletedTaskUseCase = uncompletedTaskUseCase;
     }
 
-    @PostMapping("/")
-    public void createTask(@RequestBody CreateTaskRequest createTaskRequest){
+    @PostMapping("/createTask")
+    public TaskDTO createTask(@RequestBody CreateTaskRequest createTaskRequest){
         try {
-            createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
+            return createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
                     createTaskRequest.getTitle(),
                     createTaskRequest.getDescription(),
                     createTaskRequest.getDeadline(),
@@ -72,7 +72,7 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/")
+    @DeleteMapping("/deleteTask")
     public void deleteTaskById(Long id){
         try {
             deleteTaskUseCase.deleteTaskById(id);

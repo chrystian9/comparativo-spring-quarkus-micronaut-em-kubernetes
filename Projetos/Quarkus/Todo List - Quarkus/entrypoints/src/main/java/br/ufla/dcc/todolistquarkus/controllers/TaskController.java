@@ -9,6 +9,7 @@ import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskDescriptionByIdReques
 import br.ufla.dcc.todolistquarkus.data.requests.ChangeTaskTitleByIdRequest;
 import br.ufla.dcc.todolistquarkus.data.requests.CreateTaskRequest;
 import jakarta.ws.rs.*;
+import org.jboss.resteasy.reactive.RestQuery;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class TaskController {
     }
 
     @POST
+    @Path("/createTask")
     public TaskDTO createTask(CreateTaskRequest createTaskRequest){
         try {
             return createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
@@ -62,8 +64,8 @@ public class TaskController {
     }
 
     @GET
-    @Path("/getTaskById/{id}")
-    public TaskDTO getTaskById(@PathParam("id") Long id){
+    @Path("/getTaskById")
+    public TaskDTO getTaskById(@RestQuery Long id){
         try {
             return getTaskUseCase.getById(id);
         } catch (CoreException e){
@@ -72,8 +74,8 @@ public class TaskController {
     }
 
     @DELETE
-    @Path("/{id}")
-    public void deleteTaskById(@PathParam("id") Long id){
+    @Path("/deleteTask")
+    public void deleteTaskById(@RestQuery Long id){
         try {
             deleteTaskUseCase.deleteTaskById(id);
         } catch (CoreException e){
@@ -115,7 +117,7 @@ public class TaskController {
         try {
             return changeTaskDeadlineUseCase.changeTaskDealineById(
                     changeTaskDeadlineByIdRequest.getId(),
-                    changeTaskDeadlineByIdRequest.getDateTime());
+                    changeTaskDeadlineByIdRequest.getDeadline());
         } catch (DomainValidationException e) {
             throw new BadRequestException(e.getMessage());
         } catch (CoreException e){
@@ -124,8 +126,8 @@ public class TaskController {
     }
 
     @PUT
-    @Path("/completedTaskById/{id}")
-    public TaskDTO completedTaskById(@PathParam("id") Long id){
+    @Path("/completedTaskById")
+    public TaskDTO completedTaskById(@RestQuery Long id){
         try {
             return completedTaskUseCase.completedTaskById(id);
         } catch (CoreException e){
@@ -134,8 +136,8 @@ public class TaskController {
     }
 
     @PUT
-    @Path("/uncompletedTaskById/{id}")
-    public TaskDTO uncompletedTaskById(@PathParam("id") Long id){
+    @Path("/uncompletedTaskById")
+    public TaskDTO uncompletedTaskById(@RestQuery Long id){
         try {
             return uncompletedTaskUseCase.uncompletedTaskById(id);
         } catch (CoreException e){

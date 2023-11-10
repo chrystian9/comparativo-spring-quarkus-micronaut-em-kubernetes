@@ -35,7 +35,7 @@ public class TaskController {
         this.uncompletedTaskUseCase = uncompletedTaskUseCase;
     }
 
-    @Post
+    @Post("/createTask")
     public void createTask(CreateTaskRequest createTaskRequest){
         try {
             createTaskUseCase.createTask(new TaskDTO(createTaskRequest.getId(),
@@ -59,8 +59,8 @@ public class TaskController {
         }
     }
 
-    @Get("/getTaskById/{id}")
-    public TaskDTO getTaskById(Long id){
+    @Get("/getTaskById")
+    public TaskDTO getTaskById(@QueryValue Long id){
         try {
             return getTaskUseCase.getById(id);
         } catch (CoreException e){
@@ -68,8 +68,8 @@ public class TaskController {
         }
     }
 
-    @Delete("/{id}")
-    public void deleteTaskById(Long id){
+    @Delete("createTask")
+    public void deleteTaskById(@QueryValue Long id){
         try {
             deleteTaskUseCase.deleteTaskById(id);
         } catch (CoreException e){
@@ -116,8 +116,8 @@ public class TaskController {
         }
     }
 
-    @Put("/completedTaskById/{id}")
-    public TaskDTO completedTaskById(Long id){
+    @Put("/completedTaskById")
+    public TaskDTO completedTaskById(@QueryValue Long id){
         try {
             return completedTaskUseCase.completedTaskById(id);
         } catch (CoreException e){
@@ -125,8 +125,8 @@ public class TaskController {
         }
     }
 
-    @Put("/uncompletedTaskById/{id}")
-    public TaskDTO uncompletedTaskById(Long id){
+    @Put("/uncompletedTaskById")
+    public TaskDTO uncompletedTaskById(@QueryValue Long id){
         try {
             return uncompletedTaskUseCase.uncompletedTaskById(id);
         } catch (CoreException e){

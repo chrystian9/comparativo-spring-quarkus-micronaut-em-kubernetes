@@ -10,5 +10,5 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ChangeTaskDeadlineByIdRequest {
     public Long id;
-    public LocalDateTime dateTime;
+    public LocalDateTime deadline;
 }

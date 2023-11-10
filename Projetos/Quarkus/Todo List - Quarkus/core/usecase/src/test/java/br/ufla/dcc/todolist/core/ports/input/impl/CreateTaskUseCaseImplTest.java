@@ -6,6 +6,7 @@ import br.ufla.dcc.todolist.core.ports.output.TaskOutputPort;
 import br.ufla.dcc.todolist.core.shared.exceptions.CoreException;
 import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
 import br.ufla.dcc.todolist.core.shared.exceptions.causes.DomainValidationException;
+import br.ufla.dcc.todolist.core.shared.exceptions.causes.OutputPortException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
 import org.junit.jupiter.api.Nested;
@@ -34,8 +35,9 @@ public class CreateTaskUseCaseImplTest {
     private final Task taskMock = mock(Task.class, Mockito.RETURNS_DEEP_STUBS);
     private TaskDTO validTaskDTO = new TaskDTO(null, VALID_TITLE, VALID_DESCRIPTION, VALID_DEADLINE, true);
 
-    void prepareStubs() throws DomainException {
+    void prepareStubs() throws DomainException, OutputPortException {
         doReturn(taskMock).when(taskFactory).createTask(anyString(), anyString(), any());
+        doReturn(taskMock).when(taskOutputPortMock).create(taskMock);
         when(taskMapperMock.toDTO(any())).thenReturn(validTaskDTO);
     }
 

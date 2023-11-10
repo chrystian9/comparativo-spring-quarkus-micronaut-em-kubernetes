@@ -27,7 +27,7 @@ public class CreateTaskUseCaseImpl implements CreateTaskUseCase {
             throw new DomainValidationException(e.getMessage());
         }
 
-        taskOutputPort.create(task);
+        task = taskOutputPort.create(task);
 
         return taskMapper.toDTO(task);
     }
