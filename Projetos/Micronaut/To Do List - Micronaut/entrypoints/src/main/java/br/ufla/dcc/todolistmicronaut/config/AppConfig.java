@@ -10,11 +10,19 @@ import jakarta.inject.Singleton;
 
 @Factory
 public class AppConfig {
-    private final TaskMapper taskMapper = new TaskMapper();
-    private final TaskFactory taskFactory = new TaskFactory();
+    private final TaskMapper taskMapper;
+
+    public AppConfig(){
+        this.taskMapper = new TaskMapper();
+    }
 
     @Singleton
-    public CreateTaskUseCase createTaskUseCase(TaskOutputPort taskOutputPort) {
+    public TaskFactory taskFactory() {
+        return new TaskFactory();
+    }
+
+    @Singleton
+    public CreateTaskUseCase createTaskUseCase(TaskOutputPort taskOutputPort, TaskFactory taskFactory) {
         return new CreateTaskUseCaseImpl(taskOutputPort, taskMapper, taskFactory);
     }
 

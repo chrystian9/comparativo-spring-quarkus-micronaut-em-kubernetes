@@ -7,7 +7,7 @@ import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolistmicronaut.persistence.mappers.TaskEntityMapper;
 import br.ufla.dcc.todolistmicronaut.persistence.repositories.TaskRepository;
 import br.ufla.dcc.todolistmicronaut.persistence.entities.TaskEntity;
-import jakarta.inject.Singleton;
+import io.micronaut.context.annotation.Context;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Singleton
 @RequiredArgsConstructor
-@Transactional
+@Context
 public class TaskPersistenceAdapter implements TaskOutputPort {
     private final TaskRepository taskRepository;
     private final TaskEntityMapper taskEntityMapper;
 
     @Override
+    @Transactional
     public Task create(Task task) throws OutputPortException {
         TaskEntity taskEntity = taskEntityMapper.toTaskEntity(task);
 
@@ -36,6 +36,7 @@ public class TaskPersistenceAdapter implements TaskOutputPort {
     }
 
     @Override
+    @Transactional
     public Optional<Task> getById(Long id) throws OutputPortException {
         try {
             return optionalTaskFromOptionalJpa(taskRepository.findById(id));
@@ -45,6 +46,7 @@ public class TaskPersistenceAdapter implements TaskOutputPort {
     }
 
     @Override
+    @Transactional
     public List<Task> getAll() throws OutputPortException {
         try {
             return taskRepository.findAll()

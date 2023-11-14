@@ -19,7 +19,7 @@
   <parent>
     <groupId>io.micronaut.platform</groupId>
     <artifactId>micronaut-parent</artifactId>
-    <version>4.0.0</version>
+    <version>4.1.6</version>
   </parent>
 
   <dependencies>
@@ -42,6 +42,18 @@
     <module>entrypoints</module>
   </modules>
 
+<!--  <dependencyManagement>-->
+<!--    <dependencies>-->
+<!--      <dependency>-->
+<!--        <groupId>io.micronaut</groupId>-->
+<!--        <artifactId>micronaut-bom</artifactId>-->
+<!--        <version>3.10.2</version>-->
+<!--        <type>pom</type>-->
+<!--        <scope>import</scope>-->
+<!--      </dependency>-->
+<!--    </dependencies>-->
+<!--  </dependencyManagement>-->
+
   <properties>
     <java.version>17</java.version>
     <maven.compiler.source>17</maven.compiler.source>
@@ -49,9 +61,11 @@
     <maven.compiler.release>17</maven.compiler.release>
     <jdk.version>17</jdk.version>
     <release.version>17</release.version>
-    <micronaut.version>4.1.11</micronaut.version>
-    <micronaut-maven-plugin.version>4.0.7</micronaut-maven-plugin.version>
+    <micronaut.version>4.1.6</micronaut.version>
+    <micronaut.core.version>4.1.11</micronaut.core.version>
     <micronaut.runtime>netty</micronaut.runtime>
+    <micronaut.aot.enabled>false</micronaut.aot.enabled>
+    <micronaut.aot.packageName>br.ufla.dcc.todolistmicronaut.aot.generated</micronaut.aot.packageName>
     <exec.mainClass>br.ufla.dcc.todolistmicronaut.ToDoListMicronautApplication</exec.mainClass>
   </properties>
 

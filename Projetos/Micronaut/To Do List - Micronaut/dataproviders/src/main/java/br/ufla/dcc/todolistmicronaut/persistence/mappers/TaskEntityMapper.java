@@ -4,11 +4,17 @@ import br.ufla.dcc.todolist.core.shared.exceptions.DomainException;
 import br.ufla.dcc.todolist.core.task.Task;
 import br.ufla.dcc.todolist.core.task.TaskFactory;
 import br.ufla.dcc.todolistmicronaut.persistence.entities.TaskEntity;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 @Singleton
 public class TaskEntityMapper {
-    private TaskFactory taskFactory;
+    private final TaskFactory taskFactory;
+
+    @Inject
+    public TaskEntityMapper(TaskFactory taskFactory){
+        this.taskFactory = taskFactory;
+    }
 
     public Task toTask(TaskEntity taskEntity) throws DomainException {
         return taskFactory.recreateExistingTask(taskEntity.getId(),

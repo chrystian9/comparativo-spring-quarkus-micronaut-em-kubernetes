@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-import static jakarta.persistence.GenerationType.AUTO;
-
 @Entity
 @Table(name = "task")
 @AllArgsConstructor
@@ -16,7 +14,7 @@ import static jakarta.persistence.GenerationType.AUTO;
 @Data
 public class TaskEntity {
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title", nullable = false, unique = true)
