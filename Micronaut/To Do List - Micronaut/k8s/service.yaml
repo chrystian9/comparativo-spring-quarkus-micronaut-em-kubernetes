@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: to-do-list-micronaut-service
+  namespace: micronaut
+  labels:
+    app: to-do-list-micronaut
+spec:
+  selector:
+    app: to-do-list-micronaut
+  ports:
+  - name: web
+    port: 8080

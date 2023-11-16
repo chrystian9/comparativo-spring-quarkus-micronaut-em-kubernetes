@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>br.ufla.dcc</groupId>
+  <artifactId>todolistmicronaut</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>todolistmicronaut</name>
+  <description>To Do List App with Micronaut</description>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <parent>
+    <groupId>io.micronaut.platform</groupId>
+    <artifactId>micronaut-parent</artifactId>
+    <version>4.1.6</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <modules>
+    <module>core</module>
+<!--    <module>dataproviders</module>-->
+    <module>entrypoints</module>
+  </modules>
+
+  <properties>
+    <java.version>17</java.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+    <jdk.version>17</jdk.version>
+    <release.version>17</release.version>
+    <micronaut.version>4.1.6</micronaut.version>
+    <micronaut.core.version>4.1.11</micronaut.core.version>
+    <micronaut.runtime>netty</micronaut.runtime>
+    <micronaut.aot.enabled>false</micronaut.aot.enabled>
+    <micronaut.aot.packageName>br.ufla.dcc.todolistmicronaut.aot.generated</micronaut.aot.packageName>
+    <exec.mainClass>br.ufla.dcc.todolistmicronaut.ToDoListMicronautApplication</exec.mainClass>
+  </properties>
+
+</project>
